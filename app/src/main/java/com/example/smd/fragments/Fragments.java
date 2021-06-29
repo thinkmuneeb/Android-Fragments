@@ -16,41 +16,32 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class Fragments extends Activity implements TitleFragment.TitleFragmentListener
-{
-    /** Called when the activity is first created. */
- //   @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+public class Fragments extends Activity implements TitleFragment.TitleFragmentListener {
+    /**
+     * Called when the activity is first created.
+     */
+    //   @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
     }
 
-    public void onTitleFragmentItemClick(String selectedArticle){
-       ArticleFragment articleFragment = (ArticleFragment) getFragmentManager().findFragmentById(R.id.article);
-        if(articleFragment == null){
+    @Override
+    public void onTitleFragmentItemClick(String selectedArticle) {
+        ArticleFragment articleFragment = (ArticleFragment) getFragmentManager().findFragmentById(R.id.article);
+        if (articleFragment == null) {
             articleFragment = (ArticleFragment) getFragmentManager().findFragmentByTag("articlefrag");
         }
 
-       if(articleFragment != null && articleFragment.isVisible()){     // dual pane
-          articleFragment.setText(selectedArticle);
-       }
-       else {       // single pane
-          // launch new activity or replace fragment
+        if (articleFragment != null && articleFragment.isVisible()) {     // dual pane
+            articleFragment.setText(selectedArticle);
+        } else {
+            // single pane
+            // launch new activity or replace fragment
 
-          Intent intent = new Intent(this, ArticleActivity.class);
-          intent.putExtra("text",selectedArticle);
-          startActivity(intent);
-
-
-/*
-        articleFragment = new ArticleFragment();
-          articleFragment.setText(selectedArticle);
-          FragmentTransaction transaction = getFragmentManager().beginTransaction();
-          transaction.replace(R.id.fragments_container,articleFragment);
-          transaction.addToBackStack(null);
-          transaction.commit();
-*/
-       }
+            Intent intent = new Intent(this, ArticleActivity.class);
+            intent.putExtra("text", selectedArticle);
+            startActivity(intent);
+        }
     }
 }
