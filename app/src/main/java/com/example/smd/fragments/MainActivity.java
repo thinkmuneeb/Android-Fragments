@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class Fragments extends Activity implements TitleFragment.TitleFragmentListener {
+public class MainActivity extends Activity implements TitleFragment.TitleFragmentListener {
     /**
      * Called when the activity is first created.
      */
@@ -29,9 +29,6 @@ public class Fragments extends Activity implements TitleFragment.TitleFragmentLi
     @Override
     public void onTitleFragmentItemClick(String selectedArticle) {
         ArticleFragment articleFragment = (ArticleFragment) getFragmentManager().findFragmentById(R.id.article);
-        if (articleFragment == null) {
-            articleFragment = (ArticleFragment) getFragmentManager().findFragmentByTag("articlefrag");
-        }
 
         if (articleFragment != null && articleFragment.isVisible()) {     // dual pane
             articleFragment.setText(selectedArticle);

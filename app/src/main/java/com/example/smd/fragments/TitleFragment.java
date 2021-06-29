@@ -8,45 +8,42 @@ import android.view.View;
 import android.widget.*;
 
 
+public class TitleFragment extends Fragment {
 
-public class TitleFragment extends Fragment
-{
+    TitleFragmentListener listener; // hamari main activity ka reference
 
-    TitleFragmentListener listener;
-
-    String [] array = {"one","two","three","four","five"};
+    String[] array = {"one", "two", "three", "four", "five"};
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-        Bundle savedInstanceState) {
-    
+                             Bundle savedInstanceState) {
+
         listener = (TitleFragmentListener) getActivity();
 
         return createUi();
     }
 
-    private View createUi(){
+    private View createUi() {
 
-       ListView view = new ListView(getActivity());
-       view.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-       ArrayAdapter adapter = new ArrayAdapter(getActivity(),R.layout.title_view,array);
-       view.setAdapter(adapter); 
-       view.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        ListView view = new ListView(getActivity());
+        view.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+        ArrayAdapter adapter = new ArrayAdapter(getActivity(), R.layout.title_view, array);
+        view.setAdapter(adapter);
+        view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-          public void onItemClick(AdapterView<?> parent, View view, int position,long id){
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-             listener.onTitleFragmentItemClick(array[position]);
+                listener.onTitleFragmentItemClick(array[position]);
 
-          }
+            }
 
-       });   	
-       return view;
+        });
+        return view;
     }
-
 
 
     public interface TitleFragmentListener {
 
-       public void onTitleFragmentItemClick(String selectedArticle);
+        public void onTitleFragmentItemClick(String selectedArticle);
 
     }
 
